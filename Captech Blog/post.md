@@ -34,11 +34,15 @@ To do this demo you will need to download and install the developer betas for ma
 
 In Xcode, create a new watchOS project and select the App icon, then click Next
 
-![Rendering preferences pane](image1.png)
+<center>
+<img src="image1.png" width="50%">
+</center>
 
 Next, complete the project options and make sure you check the “Use SwiftUI” option, then click continue.
 
-![Rendering preferences pane](image2.png)
+<center>
+<img src="image2.png" width="75%">
+</center>
 
 In the Xcode IDE, select the `ContentView.swift` file. Xcode uses the ContentView view struct to instantiate the HostingController in the main storyboard. We will edit the ContentView file to create our UI using the SwiftUI framework.
 
@@ -84,7 +88,9 @@ Next, replace the `body` variable with this:
 
 Here we’ve created a title label and a button to play and pause our streaming audio. When you run the app in the Xcode simulator, you will see a screen like this:
 
-![Rendering preferences pane](image3.png)
+<center>
+<img src="image3.png" width="50%">
+</center>
 
 Next we will add the button action handler function and related audio functions for streaming audio to the watch.
 
