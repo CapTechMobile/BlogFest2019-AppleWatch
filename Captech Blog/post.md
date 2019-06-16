@@ -1,3 +1,7 @@
+<center>
+<img src="watch.jpg"><!--image use creative commons license: https://creativecommons.org/publicdomain/zero/1.0/-->
+</center>
+
 ## Independent apps in watchOS 6
 
 Apple announced watchOS 6 this year at the WWDC2019 developers conference. While most of the new features were somewhat expected (new faces, updated apps), there are two new features that I think are particularly interesting for developers - App Store for Apple Watch, and app independence.  
@@ -29,7 +33,7 @@ Networking, audio streaming (no longer limited to only Apple Music), software up
 
 ###Create a demo app
 
-To demonstrate how independent apps work, we are going to create a simple watchOS 6 app. We will be using the new <a href="https://developer.apple.com/xcode/swiftui/">SwiftUI</a> framework and the new <a href="https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/">SF Symbols</a> scalable icons, along with the new audio streaming capabilities of watchOS 6.
+To demonstrate how independent apps work, we are going to create a simple watchOS 6 app. We will be using the new <a href="https://developer.apple.com/xcode/swiftui/" target="_new">SwiftUI</a> framework and the new <a href="https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/" target="_new">SF Symbols</a> scalable icons, along with the new audio streaming capabilities of watchOS 6.
 
 To do this demo you will need to download and install the developer betas for macOS 10.15 (Catalina), and Xcode 11 (note that an Apple Developer account is required to download beta software from Apple).
 
@@ -48,13 +52,13 @@ In Xcode, create a new watchOS project and select the App icon, then click Next
 Next, complete the project options and make sure you check the “Use SwiftUI” option, then click continue.
 
 <center>
-<a href="image2png"><img src="image2.png" width="75%"></a>
+<a href="image2.png" target="_new"><img src="image2.png" width="75%"></a>
 </center>
 
 Finally, In the Xcode IDE select the Watch Kit Extenion target and add the Background Modes capability, then check the "Audio" mode.
 
 <center>
-<a href="image4.png"><img src="image4.png" width="75%"></a>
+<a href="image4.png" target="_new"><img src="image4.png" width="75%"></a>
 </center>
 
 Now that we've set up our project, lets start coding!
@@ -77,7 +81,7 @@ Next, add this line to the ContentView struct:
 
     @State var playing = false
 
-This boolean is a <a href="https://developer.apple.com/documentation/swiftui/binding">bound property</a> that will be used to update our UI when the audio player state changes. 
+This boolean is a <a href="https://developer.apple.com/documentation/swiftui/binding" target="_new">bound property</a> that will be used to update our UI when the audio player state changes. 
 
 Next, replace the `body` variable with this:
 
@@ -142,7 +146,7 @@ Next we will add the button action handler function and related audio functions 
 	    }
 	}
 
-In this function we are setting up and using an audio streaming _session_. An audio session is created using the shared AVAudioSession object. <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession">You can learn more about AVAudioSession here.</a>. 
+In this function we are setting up and using an audio streaming _session_. An audio session is created using the shared AVAudioSession object. <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession" target="_new">You can learn more about AVAudioSession here.</a>. 
 
 To complete our app, we need to add the remaining support functions. 
 
@@ -175,9 +179,9 @@ Now that we've completed our code you can run the app. As mentioned above, this 
 
 Here are some helpful links to take a deeper dive into independent watchOS apps:
 
-* <a href="https://developer.apple.com/documentation/watchkit/creating_independent_watchos_apps">Creating Independent watchOS Apps</a>
-* <a href="https://developer.apple.com/documentation/watchkit/building_watchos_app_interfaces_with_swiftui">Building watchOS App Interfaces with SwiftUI</a>
-* <A href="https://developer.apple.com/videos/play/wwdc2019/716/">Streaming Audio on watchOS 6</a>
+* <a href="https://developer.apple.com/documentation/watchkit/creating_independent_watchos_apps" target="_new">Creating Independent watchOS Apps</a>
+* <a href="https://developer.apple.com/documentation/watchkit/building_watchos_app_interfaces_with_swiftui" target="_new">Building watchOS App Interfaces with SwiftUI</a>
+* <A href="https://developer.apple.com/videos/play/wwdc2019/716/" target="_new">Streaming Audio on watchOS 6</a>
 
 
 
