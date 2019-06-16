@@ -177,6 +177,7 @@ Here are some helpful links to take a deeper dive into independent watchOS apps:
 
 * <a href="https://developer.apple.com/documentation/watchkit/creating_independent_watchos_apps">Creating Independent watchOS Apps</a>
 * <a href="https://developer.apple.com/documentation/watchkit/building_watchos_app_interfaces_with_swiftui">Building watchOS App Interfaces with SwiftUI</a>
+* <A href="https://developer.apple.com/videos/play/wwdc2019/716/">Streaming Audio on watchOS 6</a>
 
 
 
