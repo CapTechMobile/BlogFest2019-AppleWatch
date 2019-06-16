@@ -1,6 +1,12 @@
-## Creating independent apps in watchOS 6
+## Independent apps in watchOS 6
 
-Apple announced watchOS 6 this year at the WWDC2019 developers conference. While most of the new features were somewhat expected (new faces, updated apps), there are two new features that are particularly interesting for developers - App Store for Apple Watch, and app <i>independence</i>.  
+Apple announced watchOS 6 this year at the WWDC2019 developers conference. While most of the new features were somewhat expected (new faces, updated apps), there are two new features that are particularly interesting for developers - App Store for Apple Watch, and app independence.  
+
+><b>in·de·pend·ent</b>  
+<i>adjective</i>
+1.
+free from outside control; not depending on another's authority.  
+<i>synonyms</i>:	freethinking, individualistic, unconventional, maverick
 
 In this blog post we are going to look at these new developments and create a working independent watchOS app.
 
@@ -15,6 +21,8 @@ Further, the availability of watch apps as independent downloads means that deve
 ###Independent Apps
 
 As mentioned above, watchOS 6 provides opportunities for developers to focus on Apple Watch as an independent platform within the Apple device ecosystem. This change means apps can run as stand-alone products that can offer a full-featured experience to end users, especially when combined with cellular data (available on Apple Watch series 3 and 4).  
+
+></a>"Independent apps don’t need an iOS companion app to operate properly. Users can choose to install the iOS app, the watchOS app, or both." - <a herf="<a herf="https://developer.apple.com/documentation/watchkit/creating_independent_watchos_apps">Apple Developer website</a>
 
 Networking, audio streaming (no longer limited to only Apple Music), software updates directly from the App Store and more will round out watchOS 6 when released later this year. 
 
@@ -33,11 +41,10 @@ To do this demo you will need to download and install the developer betas for ma
 ####Getting Started
 
 In Xcode, create a new watchOS project and select the App icon, then click Next
-
 <center>
 <img src="image1.png" width="50%">
 </center>
-
+<br><br><br>
 Next, complete the project options and make sure you check the “Use SwiftUI” option, then click continue.
 
 <center>
@@ -61,7 +68,7 @@ Next, add this line to the ContentView struct:
 
     @State var playing = false
 
-This boolean is a <i>bound</i> property that will be used to update our UI when the audio player state changes. 
+This boolean is a <i><a href="https://developer.apple.com/documentation/swiftui/binding">bound</a></i> property that will be used to update our UI when the audio player state changes. 
 
 Next, replace the `body` variable with this:
 
@@ -74,7 +81,7 @@ Next, replace the `body` variable with this:
 			// create our play button
             Button(action: { 
                 playPauseActionHandler { (success) in
-                    self.playing = success // since this is a bound property, the UI will rebuild when it changes
+                    self.playing = success // bound property, UI will rebuild when it changes
                 }
             }) {
                 
@@ -97,7 +104,7 @@ Next we will add the button action handler function and related audio functions 
 	private func playPauseActionHandler(completion: ((Bool)->Void)? = nil) {
 	    
 	    if player == nil {
-	        configureAudioSession()
+	        configureAudioSession() // call just before playing first audio
 	    }
 	    
 	    if let url = URL(string: podcastURLstring) {
@@ -113,7 +120,7 @@ Next we will add the button action handler function and related audio functions 
 	                return
 	            }
 	            
-	            if success {
+	            if success { // false if no audio route (e.g. no headphones, user cancel, etc.)
 	                if audioStreamIsPlaying {
 	                    player?.pause()
 	                } else {
@@ -126,8 +133,47 @@ Next we will add the button action handler function and related audio functions 
 	    }
 	}
 
-In this function we are setting up the audio streaming session.
+In this function we are setting up the audio streaming session. An audio session is created using the sahred AVAudioSession object. <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession">You can learn more about AVAudioSession here.</a>. 
+
+To complete our app, we need to add the remaining support functions. 
+
+Add these functions to the ContentView.swift file:
+
+	private var audioStreamIsPlaying: Bool {
+	    
+	    if let audioPlayer = player {
+	        return audioPlayer.rate > 0 // audio is playing
+	    }
+	    
+	    return false
+	}
+	
+	private func configureAudioSession() {
+	    
+	    do {
+	        try session.setCategory(AVAudioSession.Category.playback,
+	                                mode: .default,
+	                                policy: .longFormAudio,
+	                                options: [])
+	    } catch let error {
+	        fatalError("*** Unable to set up the audio session: \(error.localizedDescription) ***")
+	    }
+	}
+
+Now that we've completed our code you can run the app. As mentioned above, this will have to be run on an watch that's paired with an iPhone both running the latest beta OS. (even though it's an independent app Xcode uses the phone to push the app to the watch)
+
+###Go Deeper
+
+Here are some helpful links to take a deeper dive into independent watchOS apps:
+
+<a href="https://developer.apple.com/documentation/watchkit/creating_independent_watchos_apps">Creating Independent watchOS Apps</a>
+
+<a href="https://developer.apple.com/documentation/watchkit/building_watchos_app_interfaces_with_swiftui">Building watchOS App Interfaces with SwiftUI</a>
 
 
 
+--
+>John Morrison
+> 
+(bio here)
 
